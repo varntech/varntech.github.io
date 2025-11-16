@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>::: KERBERUS :::</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom Fonts */
+    @font-face {
+      font-family: "Xirod";
+      font-style: normal;
+      font-weight: 400;
+      src: local("Xirod"), url("https://fonts.cdnfonts.com/s/6229/xirod.woff") format("woff");
+    }
+
+    .font-kbr {
+      font-family: "Xirod", sans-serif;
+    }
+
+    .font-mono {
+      font-family: "Courier New", monospace;
+    }
+
+    /*
+    .font-spacing {
+      letter-spacing: 0.2em;
+    }
+    .font-spacing::before {
+      content: "";
+      display: inline-block;
+      width: 0.2em;
+    }
+    .font-spacing::after {
+      content: "";
+      display: inline-block;
+      width: 0;
+    }
+    */
+    body {
+      font-family: "Pretendard", sans-serif !important;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .hero-bg {
+      background: linear-gradient(to right, #000000, #111111);
+    }
+
+    .accent {
+      color: #903030;
+    }
+
+    .btn-primary {
+      background-color: #79c142;
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background-color: #96e85a;
+    }
+
+    /* 카드 가로 스크롤 */
+    /* 스크롤바 숨기기 (선택) */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* 카드 그림자 & 트랜지션 보정 (선택) */
+    .card-focus-ring:focus {
+      outline: 3px solid rgba(59, 130, 246, 0.25);
+      outline-offset: 4px;
+    }
+
+    .spec table,
+    .spec th,
+    .spec td {
+      border-width: 0.5px;
+      border-style: solid;
+      border-color: #777;
+    }
+
+    .spec table {
+      /* table-layout: fixed ; */
+      /* width: 100%; */
+      border-style: solid hidden solid hidden;
+      border-top-width: 1.5px;
+      border-color: #bbb;
+      border-collapse: collapse;
+    }
+
+    .spec tr {
+      height: 35px;
+      text-align: center;
+    }
+
+    .spec tr:hover {
+      /* background-color: #F6F6F6; */
+      background-color: #393939;
+    }
+
+    .history tbody>tr:hover {
+      background-color: #F9FAFB;
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased">
+  <!-- Header -->
+  <header class="fixed w-full bg-black bg-opacity-80 backdrop-blur-sm z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div class="flex justify-content-start items-center">
+        <a href="kerberus.html"><img src="images/kbr-logo-white.png" class="h-5 md:h-8 select-none" /></a>
+      </div>
+      <nav id="menu" class="space-x-6 hidden md:flex">
+        <a href="#products" class="hover:text-green-400 select-none">PRODUCTS</a>
+        <a href="#features" class="hover:text-green-400 select-none">FEATURES</a>
+        <a href="#specification" class="hover:text-green-400 select-none">SPECIFICATION</a>
+        <a href="index.html" class="hover:text-green-400 select-none">ABOUT US</a>
+      </nav>
+      <button id="menu-btn" class="md:hidden text-red-600 leading-none focus:outline-none">☰</button>
+    </div>
+  </header>
+  <!-- Mobile Menu (배경 불투명도 종속 피하기 위해 헤더 밖에 두어야 함) -->
+  <div id="mobile-menu" class="hidden fixed md:hidden flex flex-col items-center bg-black bg-opacity-60 backdrop-blur-sm text-white space-y-4 py-6 border-t border-gray-700 transition-all duration-300 w-full z-10 pt-20">
+    <a href="#products" class="hover:text-green-400 select-none">PRODUCTS</a>
+    <a href="#features" class="hover:text-green-400 select-none">FEATURES</a>
+    <a href="#specification" class="hover:text-green-400 select-none">SPECIFICATION</a>
+    <a href="index.html" class="hover:text-green-400 select-none">ABOUT US</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24">
+    <!-- Pattern Overlay -->
+    <!-- <div class="absolute inset-0 bg-[url(images/bg-kbr.jpg)] opacity-60"></div> -->
+    <div class="absolute inset-0 bg-[url(images/bg-kbr.jpg)] bg-cover bg-center"></div>
+
+    <!-- Content -->
+    <div class="relative max-w-4xl">
+      <img src="images/kbr-wordmark-plus-white.png" class="inline-block w-4/5 md:w-3/5 select-none" />
+      <p class="text-gray-300 max-w-4xl mx-auto mb-8 text-lg leading-relaxed">
+        <br /><br />
+        <b>KERBERUS</b>[<span class="text-yellow-200 italic">kér·be·ros</span>, <span
+          class="text-yellow-200 italic">케르베로스</span>]는 지능형 안티드론 시스템으로<br />
+        드론 <b>탐지</b> / <b>식별</b> / <b>추적</b> / <b>무력화</b>를 단일 장비로 끊김 없이 수행합니다.
+      </p>
+      <a href="#videos"
+        class="inline-block px-8 py-3 bg-gray-300 hover:bg-red-600 text-black font-semibold rounded-lg shadow-lg transition">
+        영상으로 확인하기
+      </a>
+    </div>
+
+    <!-- Subtle Bottom Gradient -->
+    <div class="absolute bottom-0 w-full h-32 bg-gradient-to-t from-black to-transparent"></div>
+  </section>
+
+  <!-- Products (White Background) -->
+  <section id="products" class="py-20 bg-white text-black">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-12">Our <span class="accent">Products</span></h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-green-700 transition">
+          <h4 class="text-xl font-semibold mb-3">탑재형</h4>
+          <img src="images/kbr-prod/prod-kbr-mounted.png" style="max-width: 100%" />
+        </div>
+        <div class="p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-green-700 transition">
+          <h4 class="text-xl font-semibold mb-3">기동형</h4>
+          <img src="images/kbr-prod/prod-kbr-portable.png" style="max-width: 100%" />
+        </div>
+        <div class="p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-green-700 transition">
+          <h4 class="text-xl font-semibold mb-3">고정형</h4>
+          <img src="images/kbr-prod/prod-kbr-ground.png" style="max-width: 100%" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features (Dark Background) -->
+  <!-- -->
+  <section id="features" class="py-20 bg-black text-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-12">Key <span class="accent">Features</span></h3>
+      <p class="text-xl font-bold text-gray-300 mb-5 text-left">하나의 장비로 끊김 없는 대응</p>
+      <p class="text-gray-400 mb-10 text-left">
+        <b>KERBERUS</b>는 단일 장비로 제공되는 안티드론 One-Stop 솔루션입니다.<br />
+        침입한 드론을 정확히 탐지하고 식별하여 대드론 모니터링 체계를 효율적으로 지원합니다.<br />
+        또한 제어권을 획득하여 원하는 위치로 이동 및 착륙시킬 수 있는 안전한 대응 수단을 제공합니다.
+      </p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-100 rounded-xl shadow-lg p-6 hover:shadow-green-700 transition">
+          <img src="images/kbr-feat/feat-detection.png" alt="Drone Control Patent" class="rounded-lg mb-4 mx-auto" />
+          <h3 class="text-l text-gray-700 font-semibold mb-2">탐지·식별 및 위치 추적</h3>
+          <p class="text-gray-700 text-sm">드론 및 조종기의 통신 신호를 분석하여<br class="hidden md:block" />드론 기종을 포착하고 드론·조종기 위치 추적
+          </p>
+        </div>
+        <div class="bg-gray-100 rounded-xl shadow-lg p-6 hover:shadow-green-700 transition">
+          <img src="images/kbr-feat/feat-neutralization.png" alt="Communication Control"
+            class="rounded-lg mb-4 mx-auto" />
+          <h4 class="text-l text-gray-700 font-semibold mb-2">지능형 무력화</h4>
+          <p class="text-gray-700 text-sm">드론 위협에 효과적으로 대응하기 위하여<br class="hidden md:block" />실시간 제어권 확보를 통해 안전한 구역에 착륙
+          </p>
+        </div>
+        <div class="bg-gray-100 rounded-xl shadow-lg p-6 hover:shadow-green-700 transition">
+          <img src="images/kbr-feat/feat-operation.png" alt="Drone Forensic System" class="rounded-lg mb-4 mx-auto" />
+          <h4 class="text-l text-gray-700 font-semibold mb-2">운용 시스템</h4>
+          <p class="text-gray-700 text-sm">다양한 환경에서 유연하게 확장 가능한<br class="hidden md:block" />직관적 인터페이스의 통합 안티드론 체계 운용
+          </p>
+        </div>
+      </div>
+      <!-- Additional 2x2 Image Grid -->
+      <div class="mt-16">
+        <!-- <h4 class="text-2xl font-semibold mb-8 text-center text-gray-800">Research & Development Highlights</h4> -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+          <div class="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+            <img src="images/kbr-feat/feat-list-scenario.png" alt="" class="w-full h-64 object-cover" />
+          </div>
+          <div class="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+            <img src="images/kbr-feat/feat-list-operating1.png" alt="" class="w-full h-64 object-cover" />
+          </div>
+          <div class="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+            <img src="images/kbr-feat/feat-list-operating2.png" alt="" class="w-full h-64 object-cover" />
+          </div>
+          <div class="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-500">
+            <img src="images/kbr-feat/feat-list-operating3.png" alt="" class="w-full h-64 object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Operation Videos Section -->
+  <section id="videos" class="py-20 bg-white text-black">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-12">Operation <span class="accent">Videos</span></h3>
+      <p class="text-gray-400 mb-10">다양한 운용 환경에서 드론 탐지, 무력화 후 비행제어 및 착륙까지 과정을 담은 시연 영상입니다.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <!-- Video 1 -->
+        <div
+          class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-500">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/3xp3fJ5fJf8" title="Drone Takeover Demo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen> </iframe>
+        </div>
+
+        <!-- Video 2 -->
+        <div
+          class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-500">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/8C50t9fFi0c" title="Drone Takeover Demo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen> </iframe>
+        </div>
+
+        <!-- Video 3 -->
+        <div
+          class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-500">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/lUlQu5XjJOA" title="Drone Takeover"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen> </iframe>
+        </div>
+
+        <!-- Video 4 -->
+        <div
+          class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-500">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/V0Yu545lfRA" title="Drone Takeover"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen> </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specification Section -->
+  <section id="specification" class="py-20 bg-black text-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-12">Specification</h3>
+
+      <!-- 6 Icon + Description (Vertical layout) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
+        <div class="flex flex-col items-center hover:shadow-green-700 transition">
+          <div class="w-20 h-20 flex items-center justify-center bg-gray-1100 border-2 border-gray-400 rounded-full mb-4">
+            <img src="images/kbr-spec/spec-1.png" alt="Detection Icon" class="w-3/4">
+          </div>
+          <p class="text-gray-500 text-sm">Detection and Identification</p>
+        </div>
+
+        <div class="flex flex-col items-center hover:shadow-green-700 transition">
+          <div class="w-20 h-20 flex items-center justify-center bg-gray-1100 border-2 border-gray-400 rounded-full mb-4">
+            <img src="images/kbr-spec/spec-2.png" alt="Signal Analysis Icon" class="w-3/4">
+          </div>
+          <p class="text-gray-500 text-sm">Precise RF Signal Digital Analysis</p>
+        </div>
+
+        <div class="flex flex-col items-center hover:shadow-green-700 transition">
+          <div class="w-20 h-20 flex items-center justify-center bg-gray-1100 border-2 border-gray-400 rounded-full mb-4">
+            <img src="images/kbr-spec/spec-3.png" alt="Mitigation Icon" class="w-3/5 h-3/5">
+          </div>
+          <p class="text-gray-500 text-sm">Intelligent Mitigation</p>
+        </div>
+
+        <div class="flex flex-col items-center hover:shadow-green-700 transition">
+          <div class="w-20 h-20 flex items-center justify-center bg-gray-1100 border-2 border-gray-400 rounded-full mb-4">
+            <img src="images/kbr-spec/spec-4.png" alt="Soft Kill Icon" class="w-3/5 h-3/5">
+          </div>
+          <p class="text-gray-500 text-sm">Perfect Soft-Kill</p>
+        </div>
+
+        <div class="flex flex-col items-center hover:shadow-green-700 transition">
+          <div class="w-20 h-20 flex items-center justify-center bg-gray-1100 border-2 border-gray-400 rounded-full mb-4">
+            <img src="images/kbr-spec/spec-5.png" alt="One Stop Icon" class="w-3/5 h-3/5">
+          </div>
+          <p class="text-gray-500 text-sm">One-Stop Process</p>
+        </div>
+
+        <div class="flex flex-col items-center hover:shadow-green-700 transition">
+          <div class="w-20 h-20 flex items-center justify-center bg-gray-1100 border-2 border-gray-400 rounded-full mb-4">
+            <img src="images/kbr-spec/spec-6.png" alt="Portability Icon" class="w-3/5 h-3/5">
+          </div>
+          <p class="text-gray-500 text-sm">Portability and Compatibility</p>
+        </div>
+      </div>
+
+      <div class="spec overflow-x-auto">
+        <!-- <table class="spec min-w-full rounded-xl shadow-lg text-xs text-gray-400"> -->
+        <table class="min-w-full text-xs text-gray-400">
+          <thead class="first:border-t-2 first:border-gray-400 text-gray-300">
+            <tr>
+              <th class="w-1/4"></th>
+              <th class="w-1/4">KBR-M0001</th>
+              <th class="w-1/4">KBR-P0001</th>
+              <th class="w-1/4">KBR-G0001</th>
+            </tr>
+          </thead>
+          <!-- <tbody class="divide-y divide-gray-200 text-gray-500"> -->
+          <tbody>
+            <tr class="first:border-t-2 first:border-gray-400">
+              <td>Form Factor<br>(Customizable)</td>
+              <td><img src="images/kbr-spec/spec-kbr-mounted.png" class="block mx-auto h-10 drop-shadow-lg" style="filter: drop-shadow(0 0 1px #a0a0a0);"></td>
+              <td><img src="images/kbr-spec/spec-kbr-portable.png" class="block mx-auto h-16 drop-shadow-lg" style="filter: drop-shadow(0 0 1px #a0a0a0);"></td>
+              <td><img src="images/kbr-spec/spec-kbr-ground.png" class="block mx-auto h-20 drop-shadow-lg" style="filter: drop-shadow(0 0 1px #a0a0a0);"></td>
+            </tr>
+            <tr>
+              <td>Type</td>
+              <td>Adjustable-fixed Mount<br> (Mission Equipment)</td>
+              <td>Highly Mobile<br> (Portable Laptop)</td>
+              <td>Stationary Installation<br> (Ground-based System)</td>
+            </tr>
+            <tr>
+              <td>Frequency</td>
+              <td colspan="3">430 ~ 435 MHz, 860 ~ 960 MHz, 2.4 ~ 2.5 GHz, 5.150 ~ 5.825 GHz</td>
+            </tr>
+            <tr>
+              <td>Antenna</td>
+              <td colspan="3">6 EA Omni-directional</td>
+            </tr>
+            <tr>
+              <td>Transmit Power</td>
+              <td>1 W</td>
+              <td colspan="2">Default : 1 W (Configurable)</td>
+            </tr>
+            <tr>
+              <!-- <td>Detection Range<sup>1)</sup></td> -->
+              <td>Typical Range<sup>1)</sup></td>
+              <td>Up to 3 km</td>
+              <td colspan="2">Up to 4 km</td>
+            </tr>
+            <!--
+            <tr>
+              <td>Mitigation Range<sup>1)</sup></td>
+              <td>Up to 1 km</td>
+              <td colspan="2">Up to 2 km</td>
+            </tr>
+            -->
+            <tr>
+              <td>Operation Modes</td>
+              <td colspan="3">1. Fast Detection Mode <br>
+                2. Detection/Identification Mode<br>
+                3. Mitigation Mode (Flight Control : Auto, Manual, RTH)</td>
+            </tr>
+            <tr>
+              <td>Supported <br>Drone Models</td>
+              <td colspan="3">1. Various Manufacturers &amp; Models <br>
+                2. Various Custom Drones (Proprietary Protocols)</td>
+            </tr>
+            <tr>
+              <td>Stand-alone</td>
+              <td>X</td>
+              <td colspan="2">O</td>
+            </tr>
+            <tr>
+              <td>Case Study</td>
+              <td>Mission Payload for<br>ISR-enabled Response</td>
+              <td colspan="2">Military<br>Massive Events<br>Critical Infrastructure<br>Government Buildings/Complex</td>
+            </tr>
+            <tr>
+              <td>Dimensions</td>
+              <td>200(W) X 100(D) X 50(H) mm</td>
+              <td>480(W) X 340(D) X 202(H) mm</td>
+              <td>500(Ø) X 125(H) mm</td>
+            </tr>
+            <tr>
+              <td>Weight</td>
+              <td>650 g</td>
+              <td>14.3 kg</td>
+              <td>15.5 kg</td>
+            </tr>
+            <tr>
+              <td>Power Supply</td>
+              <td>14.8 ~ 16.8 VDC</td>
+              <td>100 ~ 240 VAC</td>
+              <td>100 ~ 240 VAC</td>
+            </tr>
+            <!--
+            <tr>
+              <td>Power Consumption</td>
+              <td>Detection : 20 W <br>Mitigation : 50 W</td>
+              <td>Detection : 90 W <br>Mitigation : 150 W</td>
+              <td>Detection : 120 W <br>Mitigation : 200 W</td>
+            </tr>
+            -->
+            <tr class="last:border-b-2 last:border-gray-400">
+              <td>Temperature</td>
+              <td colspan="3">-20 ᵒC ~ 40 ᵒC</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="min-w-full text-xs text-gray-400 text-left">
+          <br /> 1) This may vary depending on surrounding terrain and drone type.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Test History Section -->
+  <section id="operation-history" class="py-20 bg-white text-black">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-12">Test <span class="accent">History</span></h3>
+
+      <div class="history overflow-x-auto shadow-lg rounded-2xl border border-gray-200">
+        <table class="min-w-full text-left text-xs text-gray-700">
+          <thead class="bg-gray-800 text-white text-xs uppercase">
+            <tr>
+              <th class="px-6 py-4 whitespace-nowrap">일시</th>
+              <th class="px-6 py-4 whitespace-nowrap hidden md:table-cell">장소</th>
+              <th class="px-6 py-4 whitespace-nowrap">내용</th>
+              <th class="px-6 py-4 whitespace-nowrap hidden md:table-cell">주관 (주최)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <!-- 2025 -->
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.10.31</td>
+              <td class="px-6 py-3 hidden md:table-cell">경주보문단지 / 포항영일만항</td>
+              <td class="px-6 py-3 font-bold text-red-700">APEC 정상회의 - 실전 배치 및 운용</td>
+              <td class="px-6 py-3 hidden md:table-cell">대한민국 정부</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.10.21</td>
+              <td class="px-6 py-3 hidden md:table-cell">양양국제공항</td>
+              <td class="px-6 py-3 font-bold text-red-700">공항 대상 불법드론 지능형 무력화 실증</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 / 한국항공우주연구원 (우주항공청 / 경찰청)</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.10.15</td>
+              <td class="px-6 py-3 hidden md:table-cell">국가종합비행성능시험장</td>
+              <td class="px-6 py-3 font-bold">불법드론 지능형 무력화 시험</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 / 한국항공우주연구원</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.10.02</td>
+              <td class="px-6 py-3 hidden md:table-cell">양양국제공항</td>
+              <td class="px-6 py-3 font-bold">불법드론 지능형 무력화 시험</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 / 한국항공우주연구원</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.09.26</td>
+              <td class="px-6 py-3 hidden md:table-cell">양성자과학연구단</td>
+              <td class="px-6 py-3 font-bold">APEC 대비 국가대테러종합훈련</td>
+              <td class="px-6 py-3 hidden md:table-cell">대한민국 정부</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.09.25</td>
+              <td class="px-6 py-3 hidden md:table-cell">양양국제공항</td>
+              <td class="px-6 py-3 font-bold">불법드론 지능형 무력화 시험</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국항공우주연구원</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.09.18</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원</td>
+              <td class="px-6 py-3 font-bold text-red-700">원자력시설 대상 불법드론 지능형 무력화 실증</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 / 한국항공우주연구원 (우주항공청 / 경찰청)</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.09.03</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원</td>
+              <td class="px-6 py-3 font-bold">불법드론 지능형 무력화 시험</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.08.20</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원</td>
+              <td class="px-6 py-3 font-bold text-red-700">을지연습 - 불법드론 지능형 무력화 훈련</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 (국방부 / 경찰청)</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.08.18</td>
+              <td class="px-6 py-3 hidden md:table-cell">국가종합비행성능시험장</td>
+              <td class="px-6 py-3 font-bold">드론탑재형 임무장비 시나리오 시험</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 / 한국항공우주연구원</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.07.22</td>
+              <td class="px-6 py-3 hidden md:table-cell">국가종합비행성능시험장</td>
+              <td class="px-6 py-3 font-bold">드론탑재형 임무장비 시나리오 통합시험</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 / 한국항공우주연구원</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2025.06.26</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원</td>
+              <td class="px-6 py-3 font-bold text-red-700">물리적방호 유관기관 합동 테러대응훈련 - 불법드론 지능형 무력화 훈련</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 (국방부 / 경찰청)</td>
+            </tr>
+
+            <!-- 2024 -->
+            <tr>
+              <td class="px-6 py-3 font-mono">2024.12.11</td>
+              <td class="px-6 py-3 hidden md:table-cell">보령비행장</td>
+              <td class="px-6 py-3 font-bold">드론탑재형 임무장비 탐지 시험</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국항공우주연구원</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2024.11.19</td>
+              <td class="px-6 py-3 hidden md:table-cell">국가안티드론훈련장</td>
+              <td class="px-6 py-3 font-bold text-red-700">지능형 무력화 전파 영향성 평가 (전파차단장치 야외시험)</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국항공우주연구원 (중앙전파관리소 / 국립전파연구원)</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2024.05.27</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원</td>
+              <td class="px-6 py-3 font-bold">불법드론 지능형 무력화 시연</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2024.03.26</td>
+              <td class="px-6 py-3 hidden md:table-cell">KTL 항공전자기기술센터</td>
+              <td class="px-6 py-3 font-bold">드론탑재형 임무장비 영향성 시험평가</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국항공우주연구원</td>
+            </tr>
+
+            <!-- 2023 -->
+            <tr>
+              <td class="px-6 py-3 font-mono">2023.12.07</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국항공우주연구원</td>
+              <td class="px-6 py-3 font-bold">불법드론 지능형 무력화 시연</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 / 한국항공우주연구원 (과기부 / 산업부 / 경찰청)</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3 font-mono">2023.09.21</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원</td>
+              <td class="px-6 py-3 font-bold">불법드론 지능형 무력화 시연</td>
+              <td class="px-6 py-3 hidden md:table-cell">한국원자력연구원 / 한국항공우주연구원 (과기부 / 산업부 / 경찰청)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Gallery Section -->
+      <h3 class="text-3xl font-bold mb-12"></h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <!-- 각 이미지 -->
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery01.jpeg" alt="운용 사진 1"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery02.jpeg" alt="운용 사진 2"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery03.jpeg" alt="운용 사진 3"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery04.jpeg" alt="운용 사진 4"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery05.jpeg" alt="운용 사진 5"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery06.jpeg" alt="운용 사진 6"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery07.jpeg" alt="운용 사진 7"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery08.jpeg" alt="운용 사진 8"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery09.jpeg" alt="운용 사진 9"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery10.jpeg" alt="운용 사진 10"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+
+        <!-- 11~20 -->
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery11.jpeg" alt="운용 사진 11"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery12.jpeg" alt="운용 사진 12"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery13.jpeg" alt="운용 사진 13"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery14.jpeg" alt="운용 사진 14"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="relative group overflow-hidden rounded-xl shadow-md">
+          <img src="images/gallery/gallery15.jpeg" alt="운용 사진 14"
+            class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (White Background) -->
+  <!-- -->
+  <section id="contact" class="py-20 bg-black text-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-8">Get in <span class="accent">Touch</span></h3>
+    </div>
+    <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+      <p class="text-gray-400 mb-6">
+        문의사항은 원활한 응대를 위해 가급적 이메일로 부탁드립니다.<br />
+        이메일 접수 후 가능한 빠른 시일 내에 응답드리겠습니다.<br />
+      </p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      <p class="text-gray-400 mb-6">
+        대표자 : 박희만 <br />
+        이메일 : info@varn.tech <br />
+        전화번호 : 062-971-7851 <br />
+        주소 : 광주광역시 북구 첨단과기로 313, 광주하이테크센터 B동 606호 <br />
+        사업자등록번호 : 409-86-29678 <br />
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- <p>© VARN Inc. All Rights Reserved.</p> <div class="container flex justify-between items-center text-sm text-gray-400"> -->
+  <footer class="bg-black py-6 text-center text-gray-500">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div>© <strong class="text-white">VARN</strong> 2012-<span id="currentYear"></span></div>
+      <div class="space-x-4">
+        <a href="#" class="hover:text-white transition duration-150">Copyright @ VARN Inc. All rights seserved.</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- prettier-ignore-start -->
+  <script>
+    (function () {
+      const btn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      btn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // 메뉴 클릭 시 자동 닫기
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    })();
+  </script>
+  <!-- prettier-ignore-end -->
+</body>
+
+<script>
+  const currentYear = new Date().getFullYear();
+  document.getElementById('currentYear').textContent = currentYear;
+</script>
+
+</html>
